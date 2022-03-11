@@ -1,0 +1,7 @@
+<p>login works!</p>
+<form [formGroup]="loginForm" (submit)="onSubmit()">
+  <input type="email" [formControlName]="'user_mail'" />
+  <input type="password" [formControlName]="'password'" />
+  <button type="submit" [disabled]="!loginForm.valid">Log in</button>
+</form>
+<button (click)="get()">GET</button>

@@ -1,7 +1,28 @@
-<p>login works!</p>
-<form [formGroup]="loginForm" (submit)="onSubmit()">
-  <input type="email" [formControlName]="'user_mail'" />
-  <input type="password" [formControlName]="'password'" />
-  <button type="submit" [disabled]="!loginForm.valid">Log in</button>
-</form>
-<button (click)="get()">GET</button>
+
+  <body>
+    <div class="wrapper">
+      <header>Login Form</header>
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="field email">
+          <div class="input-area">
+            <input formControlName="email" type="text" placeholder="Email Address" />
+            <fa-icon [icon]="faCoffee"></fa-icon>
+          </div>
+          <span class="error-txt" *ngIf="loginForm.controls['email'].dirty && loginForm.hasError('required','email')">*Email Id is required</span>
+        </div>
+        <div class="field password">
+          <div class="input-area">
+            <input formControlName="password" type="password" placeholder="Password" />
+            <fa-icon [icon]="faKey"></fa-icon>
+
+          </div>
+          <span class="error-txt" *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')">*Password is required</span>
+        </div>
+        <div class="pass-txt"><a href="#">Forgot password?</a></div>
+        <button type="submit" [disabled]="!loginForm.valid"class="button">Login</button>
+      </form>
+      <div class="sign-txt">
+        Not yet member? <a routerLink="/register">Signup now</a>
+      </div>
+    </div>
+  </body>

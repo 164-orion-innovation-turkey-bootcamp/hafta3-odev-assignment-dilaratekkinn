@@ -1,32 +1,50 @@
 {
-  "users": [
+  "posts": [],
+  "signupUsers": [
     {
-      "user": {
-        "email": "dilara@gmail.com",
-        "password": "123"
-      },
+      "fullname": "dilara",
+      "email": "dilara@gmail.com",
+      "password": "123",
+      "mobile": "05444504125",
       "id": 1
     },
     {
-      "user": {
-        "email": "baris@gmail.com",
-        "password": "123"
-      },
+      "fullname": "fatih çelik",
+      "email": "fatih@gmail.com",
+      "password": "456",
+      "mobile": "0545136746",
       "id": 2
     },
     {
-      "user": {
-        "email": "onur@gmail.com",
-        "password": "123"
-      },
+      "fullname": "Badem",
+      "email": "badem@gmail.com",
+      "password": "147",
+      "mobile": "666666666",
       "id": 3
     },
     {
-      "user": {
-        "email": "kaan@gmail.com",
-        "password": "123"
-      },
+      "fullname": "Cakistes The Cat",
+      "email": "cakistes@gmail.com",
+      "password": "159",
+      "mobile": "152152152",
       "id": 4
+    },
+    {
+      "fullname": "Dilara Tekin",
+      "email": "dilaratekkinn@gmail.com",
+      "password": "123",
+      "mobile": "05467665109",
+      "id": 5
+    },
+    {
+      "fullname": "tekin dilara",
+      "email": "tekindilara@gmail.com",
+      "password": "7898252952",
+      "mobile": "456456456",
+      "id": 6
     }
-  ]
+  ],
+  "profile": {
+    "name": "typicode"
+  }
 }

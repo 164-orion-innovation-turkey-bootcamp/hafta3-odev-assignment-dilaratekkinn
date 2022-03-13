@@ -1,1 +1,90 @@
-<p>register works!</p>
+<html>
+  <head> </head>
+  <body>
+    <div class="wrapper">
+      <header>SignUp Form</header>
+      <form [formGroup]="signupForm" (ngSubmit)="signUp()">
+        <div class="field email">
+          <div class="input-area">
+            <input
+              formControlName="fullname"
+              type="text"
+              placeholder="Full Name"
+            />
+          </div>
+          <span
+            class="error-txt"
+            *ngIf="
+              signupForm.controls['fullname'].dirty &&
+              signupForm.hasError('required', 'fullname')
+            "
+            >*Name is required</span
+          >
+        </div>
+
+        <div class="field email">
+          <div class="input-area">
+            <input
+              formControlName="mobile"
+              type="text"
+              placeholder="Mobile Number"
+            />
+          </div>
+          <span
+            class="error-txt"
+            *ngIf="
+              signupForm.controls['mobile'].dirty &&
+              signupForm.hasError('required', 'mobile')
+            "
+            >*Mobile Number is required</span
+          >
+        </div>
+
+        <div class="field email">
+          <div class="input-area">
+            <input
+              formControlName="email"
+              type="email"
+              placeholder="Email Address"
+            />
+          </div>
+          <span
+            class="error-txt"
+            *ngIf="
+              signupForm.controls['email'].dirty &&
+              signupForm.hasError('required', 'email')
+            "
+            >*Email is required</span
+          >
+        </div>
+
+        <div class="field password">
+          <div class="input-area">
+            <input
+              formControlName="password"
+              type="password"
+              placeholder="Password"
+            />
+            <span
+              class="error-txt"
+              *ngIf="
+                signupForm.controls['password'].dirty &&
+                signupForm.hasError('required', 'password')
+              "
+              >*Password is required</span
+            >
+          </div>
+          <br />
+        </div>
+        <div class="pass-txt"><a href="#">Forgot password?</a></div>
+        <button type="submit" [disabled]="!signupForm.valid" class="button">
+          Sign In
+        </button>
+      </form>
+
+      <div class="sign-txt">
+        Already a member? <a routerLink="/login">Login now</a>
+      </div>
+    </div>
+  </body>
+</html>

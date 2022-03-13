@@ -1,7 +1,10 @@
+
+import { HttpClient } from '@angular/common/http';
+import { faCoffee,faKey} from '@fortawesome/free-solid-svg-icons';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup,Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { DataserviceService } from '../dataservice.service';
+
 
 @Component({
   selector: 'app-login',
@@ -9,33 +12,51 @@ import { DataserviceService } from '../dataservice.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
-
+  public loginForm!: FormGroup;
+  faCoffee = faCoffee;
+  faKey=faKey;
   constructor(
-    private dataservice: DataserviceService,
-    private router: Router
+    private formBuilder: FormBuilder,
+    private http: HttpClient,
+    private router: Router,
+
+
   ) {}
 
   ngOnInit(): void {
-    this.loginForm = new FormGroup({
-      user_mail: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, Validators.required),
+    this.loginForm = this.formBuilder.group({
+      email: ['',Validators.required],
+      password: ['',Validators.required],
     });
   }
-  onSubmit() {
-    const user = {
-      email: this.loginForm.get('user_mail').value,
-      password: this.loginForm.get('password').value,
-    };
-    if (this.loginForm.valid) {
-      this.dataservice.postData(user);
-    }
-  }
-  get() {
-    this.dataservice.getData().subscribe((data) => {
-      console.log(data);
-      this.router.navigate(['/dashboard']);
-      
+  login() {
+    this.http.get<any>('http://localhost:3000/signupUsers').subscribe((res) => {
+      console.log(res, 'res');
+
+      const user = res.find((a: any) => {
+        console.log('a.password', a.password);
+        console.log('a.email', a.email);
+
+        console.log('this.loginForm.value.email', this.loginForm.value.email);
+        console.log('this.loginForm.value.password',this.loginForm.value.password);
+
+        return (
+          a.email === this.loginForm.value.email &&
+          a.password === this.loginForm.value.password
+        ); //sistemdeki iki değer karşılaştırılacak
+      });
+
+      //let user = res[0];
+
+      console.log(user);
+
+      if (user) {
+        alert('Login Sucess');
+        this.loginForm.reset(); //validation sıfırlama
+        this.router.navigate(['dashboard']);
+      } else {
+        alert('Can not find user!');
+      }
     });
   }
 }
